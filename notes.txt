@@ -1,0 +1,8 @@
+ets:match(db1, '$1').                            % [[{buf,default}],
+   [{bbox,{1,1,1,1}}],
+   [{loc,{2,2}}],
+   [{line,"ets:match(db1, '$1')."}],
+   [{output,[]}],
+   [{it,"ets:match(db1, '$1')."}]]
+
+

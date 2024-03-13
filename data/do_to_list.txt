@@ -1,0 +1,41 @@
+
+History of features 
+
+6-15-23     build stable isolated spawn of eval of line in erlang 
+6-15-23     document system architecture 
+
+6-17-23     set filename
+6-17-23     set pathname
+6-17-23     fix layout of filename/pathname/nodename
+
+8-10-23     build menu system in elixir 
+
+8-20-23     fix layout after screen resize
+8-21-23      
+
+to do list 
+
+1- more unit tests more and document 
+2- move more key bindings to ets datastore 
+ 
+3- add default/progressive/random node name creation for new NaCl editors in programs. 
+
+4- simplily main entry point with functions
+    setup 
+    database
+    spawn q stack
+    name_node
+    spawn update processes
+    jump to char_listener
+
+5-  fix x-scroll
+6-  Documentation
+7-  unicode, add
+8-  toggle crystalize
+9-  fix name of file to save
+10- ets -> dets -> mnesia
+11- organize helper functions(syntax helpter)
+12- gen_server main processes with manager
+13- launch plugins from editor,  maybe
+14- control panel for options 
+15- fix scroll with kill/yank 

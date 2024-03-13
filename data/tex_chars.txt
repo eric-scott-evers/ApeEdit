@@ -1,0 +1,34 @@
+/character_name_example      1x1234;    0
+
+
+/times                       0x00D7;    × 
+
+/division                    0x00F7;    ÷  
+
+/overline                    0x203E;    ‾   
+/apl_negative                0x203E;  
+
+/leftward_arrow              0x2190;    ← 
+/gets  
+
+/circle_strike_backslash     0x2349;	⍉ 
+/backslash_strike_circle     0x2349;    
+/apl_transpose               0x2349;
+
+/circle_strike_star          0x235F;    ⍟
+/star_strike_circle          0x235F;  
+/apl_log                     0x235F; 
+
+/alpha                       0x03B1     α
+/beta                        0x03B2;    β
+/gamma                       0x03B3;    γ
+	
+/iota                        0x03B9;    ι 
+
+/rho	                     0x03C1;    ρ
+ 
+/apl_rho                     0x2374;    ⍴ 
+
+/apl_omega                   0x2375;    ⍵  
+
+

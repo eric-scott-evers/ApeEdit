@@ -1,0 +1,70 @@
+
+Todo List: 
+
+-  more unit tests more and document 
+-  move more key bindings to ets datastore 
+-  add default/progressive/random node name creation for new NaCl editors in programs. 
+-  fix x-scroll
+-  Documentation
+-  unicode, add
+-  toggle crystalize / maybe 
+-  fix name of file to save
+-  ets -> dets -> mnesia / maybe 
+-  organize helper functions(syntax helpter)
+-  gen_server main processes with manager
+-  launch plugins from editor,  maybe
+-  control panel for options 
+-  fix scroll with kill/yank 
+-  loading a shorter program keeps the longer text after 
+-  actually add results of erlang execution to buffer 
+-  add generic server 
+-  fix default file path  
+    path = chomp os:cmd pdw  
+-  [[X1, Char], [X2, Char]] = ets:match(db1, {{char, 11, '$1'}, '$2'} ).  gets match 
+
+============================================================
+
+History of new features
+
+12-27-2023  simple latex like imputs 
+12-25-2023  unicode menu 
+11-12-2023  added simple unicode chars  
+ 9-06-2023  multiple sliders 
+ 9-05-2023  insert text with lfe coworker 
+ 9-04-2023  got the erl lint, erlint working on file with output into editor
+              event_queue ! [{lint}].
+8-28-2023   add events_choices list for each menu 
+            so each menu item has a 
+            (1) representation, choices list
+            (2) a useful value, useful_choices list
+            (3) associated event_transactions (commands), in event_choices list
+8-26-2023   move useful menu choices to elixir menu mng 
+8-26-2023   update todo list structure with: future and past 
+
+8-25-2023   move menu bar out of erlang and into elixir
+8-24-2023   set color of text at the mark 
+8-23-2023   set color of text from a menu
+8-22-2023   crystalize, pad text with spaces to stop crashes   
+8-21-2023   create dymanic menu functions with timeouts 
+
+8-20-23     fix layout after screen resize  
+8-12-23     load about or help file from menu 
+8-10-23     build menu system in elixir
+8-08-23  
+8-05-23     orgamize main program with more functions
+                setup 
+                database
+                spawn q stack
+                name_node
+                spawn update processes
+                jump to char_listener
+
+6-17-23     set filename
+6-17-23     set pathname
+6-17-23     fix layout of filename/pathname/nodename
+6-15-23     build stable isolated spawn of eval of line in erlang 
+            and just print out "crash" on fail  
+6-15-23     document system architecture 
+
+    
+

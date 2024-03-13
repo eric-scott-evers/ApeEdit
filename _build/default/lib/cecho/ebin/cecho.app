@@ -1,0 +1,12 @@
+{application,cecho,
+             [{description,"An ncurses library for Erlang"},
+              {vsn,"0.5.2"},
+              {registered,[]},
+              {mod,{cecho,[]}},
+              {applications,[kernel,stdlib]},
+              {env,[]},
+              {modules,[art,binding,cecho,cecho_example,cecho_srv,plank3,
+                        planks,test]},
+              {maintainers,[]},
+              {licenses,["Apache 2.0"]},
+              {links,[]}]}.

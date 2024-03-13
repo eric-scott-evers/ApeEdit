@@ -1,0 +1,31 @@
+Help: List of default key-bindings:                                                                                                                                                                                                                                          
+
+  ⌀                                                                  
+                                                                                    
+  Exit                                                                                                                                                                      
+    ^c-^c exit program                                                                                                                                                  
+                                                                                                                                                                
+  Copy-Paste                                                                                                                                                                                                                                                                           
+    ^k    kill-line, copy to kill buffer                                                                                                                                                                             
+    ^y    yank-line, paste from kill buffer                                                                                                                                                                                                                                                                                                                      
+                                                                                              
+  Debug: 	                                                                                                                                                                              
+    ^t    toggle tether editor to another editor 
+    ^x-e  send copy of low frequency events to tethered instance of NaCl                                                                                
+                                                                                          
+          
+    ^e    execute one line of erlang code at cursor                                                                                    
+          (the values of variables are remembered between calls)                                                                                                                     
+                                                                                    
+  Files:                                                                                                                                                                  
+    ^h    loads help file   
+    ^w    set file name                                                                                
+    ^w-n  set file name                                                                                 
+    ^x-p  set path name
+    ^x-w  save file  
+    ^x-s  load file 
+                                                                                 
+
+                                                                             
+                                                                             
+                                                                             

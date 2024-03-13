@@ -1,0 +1,40 @@
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+   menu state diagram                                                                                
+                                                                                
+   (R) move right                                                                                    
+   (L) move left                                                                                                                                           
+                                                                                                               
+   default-state:  -1)=nul  is state=-1 when outside menu    
+                      |                                                                           
+                     \|/     (R)                                                                                                                                      
+   start-state:    0)title  -----> nul                                                                                
+                     /|\ 
+                      |                                                                                                                            
+                     \|/      (R)                                                               
+                 1)title_bar ----> nul                                                                 
+                     /|\
+                      |                                                                                
+         (L)         \|/    (R) choose_item                                                                                                          
+  nul <---------- 2)item_1 --------------------> nul                                                                
+                     /|\
+                      |                                                                                                   
+         (L)         \|/    (R) choose_item                                                                                                 
+  nul <---------- 3)item_2 --------------------> nul                                                               
+                     /|\ 
+                      |                                                                             
+         (L)         \|/    (R) choose_item                                                                     
+  nul <---------  n)item_n --------------------> nul                                                                                                                                        
+                     /|\
+                      |                                                                                 
+                     \|/                                                                                                                   
+  nul <---------  end_line ------> nul                                                                
+                                                                                    
+
+index number of choices gives choice                                                                                     
+index number of useful_choices gives useful_choice 

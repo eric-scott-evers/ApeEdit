@@ -1,0 +1,17 @@
+
+ Todo
+
+ - some C-X cmds do not clear control x state after call  
+ - move menu all the way out of erlang 
+ - backups, always 
+ - otp - genserver for 
+ - delete whole line if is on first character of line 
+----------------------------------------------------------------
+ Notes:
+
+ Attach-lets: 
+ - we do not load plugins, we attach attach-lets. 
+
+ ------------------------------------------------------------- 
+ - refresh bottom 4 lines of screen, done 8-19-2023
+

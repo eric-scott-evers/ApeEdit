@@ -1,0 +1,14 @@
+eric@eric-virtual-machine:~/Downloads/cecho/_build/default/lib/cecho$ dialyzer --build_plt --dump_callgraph ebin/cecho.beam --src src/cecho.erl
+
+dialyzer: {dialyzer_error,"Byte code compiled with debug_info is needed to build the PLT"}
+[{dialyzer_options,check_output_plt,1,
+                   [{file,"dialyzer_options.erl"},{line,89}]},
+ {dialyzer_options,postprocess_opts,1,
+                   [{file,"dialyzer_options.erl"},{line,73}]},
+ {dialyzer_options,build,1,[{file,"dialyzer_options.erl"},{line,60}]},
+ {dialyzer_cl_parse,cl,1,[{file,"dialyzer_cl_parse.erl"},{line,230}]},
+ {dialyzer_cl_parse,start,0,[{file,"dialyzer_cl_parse.erl"},{line,40}]},
+ {dialyzer,plain_cl,0,[{file,"dialyzer.erl"},{line,54}]},
+ {init,start_em,1,[]},
+ {init,do_boot,3,[]}]
+

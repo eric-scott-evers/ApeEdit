@@ -1,0 +1,22 @@
+
+
+s = "\"\#{1 + 1}\""
+"\"\#{1 + 1}\""
+iex(3)> s
+"\"\#{1 + 1}\""
+iex(4)> s |> Code.eval_
+eval_file/1      eval_file/2      eval_quoted/1    eval_quoted/2    
+eval_quoted/3    eval_string/1    eval_string/2    eval_string/3    
+
+iex(4)> s |> Code.eval_string 
+{"2", []}
+iex(5)> {val, env} = s |> Code.eval_string 
+{"2", []}
+iex(6)> val
+"2"
+iex(7)> env
+[]
+
+iex(1)> Code.eval_string "hello = 5"
+{5, [hello: 5]}
+

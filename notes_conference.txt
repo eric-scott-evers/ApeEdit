@@ -1,0 +1,8 @@
+GenLsp
+elixir-tools
+credo-language server
+ 
+hover
+network programming open source book 
+by seth
+

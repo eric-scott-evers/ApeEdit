@@ -1,0 +1,63 @@
+
+Documentation for NaCl editor 
+
+Arhitecture -
+
+Data flow in application 
+
+        +--- --> ---+   
+        |           |
+    cecho.erl   char_listener
+        |           |
+    cecho.c     tether_char   
+        |           |
+    terminal    event_builder
+        |           |
+    cecho.c     event_queue
+        |           |
+    cecho.erl   [event_functions]
+        |           |          
+        +--- <-- ---+
+
+Data flow beween instances at different levels
+
+        +--- --> ---+   
+        |           |                
+    cecho.erl   char_listener +--\ /---> char_listener
+        |           |             X          |   
+    cecho.c       tether_char +--/ \---> tether_char
+        |           |                       |
+    terminal    event_builder            event_builder
+        |           |                       |     
+    cecho.c       event_queue +--------> event_queue      
+        |           |                       |
+    cecho.erl   [event_functions]        [event_functions]     
+        |           |                   
+        +--- <-- ---+                       
+
+
+Why so many levels? 
+To facilitate testing and other utility functions such as
+    - group editing
+    - debugging
+    - testing  
+    - utility plugins 
+
+Utility functions in NaCl editor:
+
+Execute line of erlang code 
+    - use ^x-e to execute line of code in erlang 
+    - code can access some information about editor via ets database
+    - code lives in its own environment, so variables live as long as an edit session
+    - code runs in controled process and replies "crash" is code fails.
+
+
+
+
+
+
+
+
+
+
+

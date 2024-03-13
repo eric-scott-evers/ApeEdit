@@ -1,0 +1,6 @@
+
+// elixir processing 
+
+{:ok, s} = File.read("tex_chars.txt") 
+
+s |> String.split("\n")

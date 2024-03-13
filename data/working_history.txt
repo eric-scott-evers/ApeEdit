@@ -1,0 +1,13 @@
+
+
+
+
+5 - 12 - 2023
+graphing a point in elixir 
+
+5 - 13 - 2023
+fixed node name for default and random names
+
+6-13-2023
+fixed simple test running in elixir
+

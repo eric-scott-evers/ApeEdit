@@ -1,0 +1,43 @@
+                                                                                                                   
+  ApeEdit is an experimental editor.                                                                                                                                   
+                                                                                               
+  It is built from Erlang and Elixir.                                                                                
+  You can also build coworkers(plugins) from any beam language                                                                                
+  like lfe, or gleam, etc.                                                                                 
+  For instance, each menu is created by a different Elixir process.                                                                                
+  If one menu crashes, the other menus are uneffected.                                                                                 
+                                                                                                         
+  Many processes help the editor for function,                                                                                
+  some of the named processes are listed.                                                                                                                  
+                                                                                                      
+    char_queue_for_tether,                                                                                
+    ignore_data_queue,                                                                                
+    build_event,                                                                                
+    listen_char,                                                                                                                                        
+    cecho_srv,                                                                                 
+    menu_event_queue,                                                                                
+    char_queue,                                                                                
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               

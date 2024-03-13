@@ -1,0 +1,19 @@
+                                                                                                                   
+  ApeEdit is an experimental editor.                                                                                                                                   
+                                                                                      
+  It is built from Erlang and Elixir.                                                                                   
+  Many processes help the editor for function,                                                                                
+  some of the named processes are listed.                                                                                                                  
+                                                                                        
+         ok then                                                                                 
+                                                                                                                                                   
+                                                                                           
+                                                                                           
+                                                                                             
+                                                                                             
+                                                                                              
+                                                                                                 
+                                                                                                
+                                                                                                 
+                                                                                                                                                
+                                                                                

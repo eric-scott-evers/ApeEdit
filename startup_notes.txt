@@ -1,0 +1,24 @@
+Requirements:
+
+Install needed libraries 
+  elixir/erlang
+  rebar3
+  gcc
+  ncurses
+  and fish b/c is nice 
+
+run 
+	rebar3 clean in cecho
+then 
+	rebar3 compile
+then
+	erl -name sample@127.0.0.1 
+then 
+	./NaCl.escript
+I put 
+	erl -name sample@127.0.0.1 
+into 
+	menubot.sh
+so you do not need to type if is you use menubot.sh
+just run
+	./menubot.sh

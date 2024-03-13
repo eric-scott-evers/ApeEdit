@@ -1,0 +1,37 @@
+
+
+ (net_kernel:start ( list ( erlang:list_to_atom "lfe@127.0.0.1" ) 'longnames ) )         
+;;  #(error #(already_started #Pid<0.120.0>))
+
+ (erlang:set_cookie 'cookie)                                                             
+;;  true
+ 
+ (defun send (out)  
+   (progn
+     ( timer:sleep 100 )
+     (! (tuple 'event_queue
+          ( erlang:list_to_atom "bookA@127.0.0.1" )  
+       )
+     )
+     (set i (+ i 1))
+     out
+   )
+ )
+
+
+;; left data spread out to nodes
+ ( timer:sleep 1000)
+ 
+  (set data (registered))
+  (set sorted_data (lists:sort data))
+  (set i 1)
+  (set a_list (lists:map (lambda (a) (send (atom_to_list a))) sorted_data ))
+  (set out (car a_list))
+
+  (send out)     
+
+;;  #(show 42)
+
+ ( timer:sleep 1000)
+
+

@@ -1,0 +1,175 @@
+%%==============================================================================
+%% Copyright (c) 2017, Mazen Harake
+%% All rights reserved.
+%%
+%% Redistribution and use in source and binary forms, with or without
+%% modification, are permitted provided that the following conditions are met:
+%%
+%%     * Redistributions of source code must retain the above copyright notice,
+%%       this list of conditions and the following disclaimer.
+%%     * Redistributions in binary form must reproduce the above copyright
+%%       notice, this list of conditions and the following disclaimer in the
+%%       documentation and/or other materials provided with the distribution.
+%%
+%% THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+%% AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+%% IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+%% ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+%% LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+%% CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+%% SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+%% INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+%% CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+%% ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+%% POSSIBILITY OF SUCH DAMAGE.
+%%==============================================================================
+
+-module(plank).
+
+-author('mazen.harake@gmail.com').
+
+-include("cecho.hrl").
+
+-export ([
+          edit/0
+         ]).
+
+%%
+%% A Simple text editor. 'q' to quit.
+%%
+
+edit() ->
+    application:start(cecho),
+    cecho:cbreak(),
+    cecho:noecho(),
+    cecho:curs_set(?ceCURS_INVISIBLE),
+    cecho:keypad(?ceSTDSCR, true),
+    {Max_Y, Max_X} = cecho:getmaxyx(),
+    paint_frame(Max_Y, Max_X, "="), 
+    event_queue(Max_Y, Max_X).
+
+event_queue(Old_Y, Old_X) ->
+    receive
+        Input -> Input
+        after 1000 -> ok
+    end, 
+    % Update screen frame ---
+    % -- erase old frame 
+    % paint_simple_frame(Old_Y, Old_X, " "),
+    % -- draw new frame 
+    % {Max_Y, Max_X} = cecho:getmaxyx(),
+    % paint_frame(Max_Y, Max_X, "="),
+    % event_queue(Max_Y, Max_X).
+    moveloop(cecho:getch()). 
+
+paint_frame(Max_Y, Max_X, Frame_Str ) ->
+    paint_simple_frame(Max_Y, Max_X, Frame_Str ),  
+    cecho:mvaddstr(Max_Y-2, Max_X-12, 
+      io_lib:format( " (~p x ~p) ",[Max_Y, Max_X] )),
+    cecho:move(1,1),  
+    cecho:refresh().
+
+paint_simple_frame( Max_Y, Max_X, Frame_Str) ->
+    Wall = string:copies( Frame_Str, round( Max_X)),
+    cecho:move( Max_Y-2, 0),
+    cecho:addstr( Wall),  
+    cecho:move(1,1),  
+    cecho:refresh().  
+
+moveloop(K) when K == ?ceKEY_F(1) ->
+    halt();
+moveloop(?ceKEY_ESC) ->
+    application:stop(cecho);
+moveloop(C) ->
+    {_, CX} = cecho:getyx(),
+    {JY,JX} = cecho:getyx(),  % remember jumpback location  
+    case C of
+	  ?ceKEY_UP   -> mv(-1, 0);
+	  ?ceKEY_DOWN  -> mv(1, 0);
+	  ?ceKEY_RIGHT  -> mv(0, 1);
+	  ?ceKEY_LEFT    -> mv(0, -1);
+      ?ceKEY_ENTER    -> mv(1, -CX+1);
+      _BACKSPACE = 263 -> mv(0, -1), cecho:addch(32), mv(0, -1);
+      ?ceKEY_DEL        -> mv(0, -1), cecho:addch(32), mv(0, -1);
+      ?ceCtrl_s  -> ask_filename(), cecho:move(JY, JX);
+      ?ceCtrl_r  -> cecho:addstr("read");
+      _Ctrl_l = _refresh = 12 -> redraw();
+	  A           -> show(A)
+    end,
+    cecho:curs_set(?ceCURS_NORMAL),
+    moveloop(cecho:getch()).
+
+redraw() ->
+    ok.
+
+read_filename(Filename) ->
+    C = _Char = cecho:getch(),
+    case C of  
+      ?ceKEY_ENTER -> Filename;  
+      A -> cecho:addch(A), 
+            cecho:refresh(), 
+            read_filename(Filename++[A])
+    end.
+
+ask_filename() ->
+  {MY, _MX} = cecho:getmaxyx(),
+  cecho:mvaddstr(MY-1, 1, io_lib:format(" filename: ", [] )),    
+  Filename = read_filename([]),
+  cecho:mvaddstr(MY-2, 50, io_lib:format(" saved filename:~s ",[Filename] )),
+  file:write_file(Filename, "test data"),
+  ok.
+
+% put_char_at(Y,X,Char) ->
+%    {AY, AX} = cecho:getyx(),
+%    cecho:move(Y,X),
+%    cecho:addch(Char),
+%   cecho:move(AY,AX).
+
+show_cursor(CY, CX) -> 
+    % remember starting point 
+    {AY, AX} = cecho:getyx(),
+
+    cecho:move(0,CX),
+    cecho:addch(32),
+    cecho:move(0,CX+1),
+    cecho:addch(42),
+    cecho:move(0,CX+2),
+    cecho:addch(32),  
+    
+    cecho:move(CY-1,0),
+    cecho:addch(32),
+    cecho:move(CY,0),
+    cecho:addch(42),
+    cecho:move(CY+1,0),
+    cecho:addch(32),  
+
+    {MY, _MX} = cecho:getmaxyx(),
+    cecho:mvaddstr(MY-2, 10, io_lib:format("~p C: ",[CX] )),
+    cecho:mvaddstr(MY-2,  1, io_lib:format("~p R: ",[CY] )),
+
+    cecho:move(AY,AX),
+    cecho:refresh().
+
+mv(OffsetY, OffsetX) ->
+    {CY, CX} = cecho:getyx(),
+    {MY, MX} = cecho:getmaxyx(),
+    FinalY = min(MY-3, max(1, CY + OffsetY)), % lowest line no is 1
+    FinalX = min(MX-3, max(1, CX + OffsetX)), % lowest col no is 1
+ 
+    cecho:move(FinalY, FinalX ),   % was $. before 
+    % cecho:mvaddch(FinalY, FinalX, ?ceA_BLINK ),  % was $. before 
+    show_cursor(CY, CX),
+    cecho:move(FinalY, FinalX),
+    cecho:refresh().
+
+show(Char) ->  
+    {CY, CX} = cecho:getyx(),
+    cecho:addch(Char),
+    show_cursor(CY,CX),
+    cecho:mvaddstr(5, 15, io_lib:format(" ~p ",[Char] )),
+        P = Char,
+        cecho:move(CY, CX+1),
+        P.
+
+
+
